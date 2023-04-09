@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/changelog-master.yaml
+  - include:
+      file: db/changelog/db.changelog-initial.yaml
+  - include:
+      file: db/changelog/db.changelog-patch.yaml

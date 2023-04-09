@@ -1,0 +1,8 @@
+server.port: 8080
+
+application:
+  clients:
+    coin-market-cap:
+      url: https://pro-api.coinmarketcap.com/
+      key: secret
+

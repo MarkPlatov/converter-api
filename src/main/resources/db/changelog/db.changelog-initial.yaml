@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/changelog-initial.yaml
+  - changeSet:
+      id: Create table account_pairs
+      author: mark
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: coin
+      changes:
+        - createTable:
+            tableName: coin
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  constraints:
+                    primaryKey: true
