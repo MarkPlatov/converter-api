@@ -1,8 +1,11 @@
-server.port: 8080
+server.port: 8081
 
 application:
-  clients:
-    coin-market-cap:
-      url: https://pro-api.coinmarketcap.com/
-      key: secret
+  exchange-rate-queue: "exchange.rate."
+  coin-queue: "coin."
 
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: secret
+    password: secret

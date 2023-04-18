@@ -9,5 +9,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "application")
 public class AppConfig {
 
+    private String exchangeRateQueue;
+
+    private String coinQueue;
 
 }

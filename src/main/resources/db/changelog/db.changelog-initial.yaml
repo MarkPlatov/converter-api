@@ -1,19 +1,44 @@
 databaseChangeLog:
   - logicalFilePath: db/changelog/changelog-initial.yaml
   - changeSet:
-      id: Create table account_pairs
+      id: Create table exchange
       author: mark
       preConditions:
         - onFail: MARK_RAN
         - not:
             - tableExists:
-                tableName: coin
+                tableName: exchange
       changes:
         - createTable:
-            tableName: coin
+            tableName: exchange
             columns:
               - column:
                   name: id
                   type: INT
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
+              - column:
+                  name: amount_source_integer_part
+                  type: VARCHAR
+              - column:
+                  name: amount_source_fractional_part
+                  type: VARCHAR
+              - column:
+                  name: cmc_id_source
+                  type: INT
+              - column:
+                  name: amount_destination_integer_part
+                  type: VARCHAR
+              - column:
+                  name: amount_destination_fractional_part
+                  type: VARCHAR
+              - column:
+                  name: cmc_id_destination
+                  type: INT
+              - column:
+                  name: exchange_rate
+                  type: FLOAT
+              - column:
+                  name: request_timestamp
+                  type: TIMESTAMP
