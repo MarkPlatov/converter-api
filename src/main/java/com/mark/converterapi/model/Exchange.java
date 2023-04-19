@@ -4,14 +4,12 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 import com.mark.converterapi.dto.CurrencyAmount;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 @Table(name = "exchange")

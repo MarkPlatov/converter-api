@@ -1,5 +1,6 @@
 package com.mark.converterapi.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,6 +24,9 @@ public class CoinmarketServiceImpl implements CoinmarketService {
     public List<CoinDto> getCoin(String name) {
         String response = producerConsumer.request(name, appConfig.getCoinQueue());
         try {
+            if (response == null) {
+                return Collections.emptyList();
+            }
             CoinDto[] coins = objectMapper.readValue(response, CoinDto[].class);
             return List.of(coins);
         } catch (JsonProcessingException ex) {
