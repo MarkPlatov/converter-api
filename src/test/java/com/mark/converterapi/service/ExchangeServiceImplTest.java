@@ -4,7 +4,6 @@ import com.mark.converterapi.dto.CurrencyAmount;
 import com.mark.converterapi.exception.UnknownExchangeRateException;
 import com.mark.converterapi.model.Exchange;
 import lombok.Data;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -92,7 +91,7 @@ class ExchangeServiceImplTest {
             DEFAULT_CURRENCY_AMOUNT,
             null,
             2
-            ));
+        ));
     }
 
     @Test
