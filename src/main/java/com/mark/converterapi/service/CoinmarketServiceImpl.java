@@ -34,6 +34,9 @@ public class CoinmarketServiceImpl implements CoinmarketService {
     public Double getExchangeRate(Integer sourceCmcId, Integer destinationCmcId) {
         String response = producerConsumer.request(new ExchangeRateRequest(sourceCmcId, destinationCmcId), appConfig.getExchangeRateQueue());
         try {
+            if (response == null) {
+                return null;
+            }
             return objectMapper.readValue(response, ExchangeRateResponse.class).getExchangeRate();
         } catch (JsonProcessingException ex) {
             throw new RuntimeException("Can't deserialize response: " + response, ex);

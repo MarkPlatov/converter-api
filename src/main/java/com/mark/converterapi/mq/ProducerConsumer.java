@@ -23,7 +23,10 @@ public class ProducerConsumer {
         try {
             String msg = objectMapper.writer().writeValueAsString(request);
             Message message = jmsTemplate.execute(new SessionCallbackImpl(msg, queue, jmsTemplate.getDestinationResolver()), true);
-            return ((TextMessage) Objects.requireNonNull(message)).getText();
+            if (message == null) {
+                return null;
+            }
+            return ((TextMessage) message).getText();
         } catch (JsonProcessingException | JMSException e) {
             throw new RuntimeException(e);
         }
@@ -49,7 +52,6 @@ public class ProducerConsumer {
                 Message received = consumer.receive(TIMEOUT);
                 if (received instanceof TextMessage receivedTextMessage) {
                     String text = receivedTextMessage.getText();
-                    System.out.println("receivedTextMessage.getText() = " + text);
                 }
                 return received;
             } finally {

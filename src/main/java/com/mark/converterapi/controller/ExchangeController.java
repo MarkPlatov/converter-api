@@ -21,7 +21,7 @@ public class ExchangeController {
 
     private final CoinmarketServiceFacade coinmarketServiceFacade;
 
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Exchange an amount of source currency to destination currency")
     @Parameters({
         @Parameter(name = "amountIntegerPart", description = "Integer part of source currency amount", example = "1000"),

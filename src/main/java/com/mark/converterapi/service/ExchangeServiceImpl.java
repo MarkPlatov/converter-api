@@ -3,6 +3,7 @@ package com.mark.converterapi.service;
 import java.math.BigDecimal;
 
 import com.mark.converterapi.dto.CurrencyAmount;
+import com.mark.converterapi.exception.UnknownExchangeRateException;
 import com.mark.converterapi.model.Exchange;
 import com.mark.converterapi.repository.ExchangeRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,10 @@ public class ExchangeServiceImpl implements ExchangeService {
 
     @Override
     public CurrencyAmount calc(CurrencyAmount sourceAmount, Double exchangeRate, Integer destinationCmcId) {
+        if (exchangeRate == null) {
+            throw new UnknownExchangeRateException(sourceAmount.currencyCmcId(), destinationCmcId);
+        }
+
         BigDecimal destinationAmount = sourceAmount.toBigDecimal().multiply(BigDecimal.valueOf(exchangeRate));
         String destinationStr = destinationAmount.toPlainString();
         int dotIndex = destinationStr.indexOf('.');
